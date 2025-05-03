@@ -22,7 +22,7 @@ public class OutboxMessageScheduler
 
     @Scheduled(fixedDelay = 5000)
     public void publishPendingMessages() {
-        List<OrderOutbox> pendingMessages = outboxRepository.findByStatus(OrderEventStatus.PENDING.name());
+        List<OrderOutbox> pendingMessages = outboxRepository.findByStatus(OrderEventStatus.PENDING);
 
         for (OrderOutbox outbox : pendingMessages) {
             try {
