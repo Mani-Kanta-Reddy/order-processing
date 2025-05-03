@@ -1,7 +1,6 @@
 package com.orderprocessing.orderprocessing.service;
 
 import com.orderprocessing.orderprocessing.config.RabbitMQConfig;
-import com.orderprocessing.orderprocessing.dto.OrderRequestDTO;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,8 @@ public class RabbitMQOrderMessageProducer implements OrderMessageProducer
     }
 
     @Override
-    public void sendOrder(OrderRequestDTO orderRequestDTO)
+    public void sendOrder(String payload)
     {
-        rabbitTemplate.convertAndSend(rabbitMQConfig.getORDER_QUEUE(), orderRequestDTO);
+        rabbitTemplate.convertAndSend(rabbitMQConfig.getORDER_QUEUE(), payload);
     }
 }
