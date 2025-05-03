@@ -68,5 +68,15 @@ public class PagedResponseDTO<T> {
     {
         isLast = last;
     }
+
+    public List<T> getData()
+    {
+        return data;
+    }
+
+    public void setData(List<T> data)
+    {
+        this.data = data;
+    }
 }
 

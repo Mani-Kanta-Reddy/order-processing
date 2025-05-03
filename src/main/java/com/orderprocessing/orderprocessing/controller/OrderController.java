@@ -33,7 +33,7 @@ public class OrderController
         return ResponseEntity.ok(orderService.getOrders());
     }
 
-    @GetMapping
+    @GetMapping("/paged")
     public ResponseEntity<PagedResponseDTO<OrderResponseDTO>> getOrders(
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "10") int size
