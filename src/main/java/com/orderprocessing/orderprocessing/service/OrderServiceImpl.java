@@ -12,10 +12,12 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService
 {
     private final OrderRepository orderRepository;
+    private final RabbitMQOrderMessageProducer orderMessageProducer;
 
-    public OrderServiceImpl(OrderRepository orderRepository)
+    public OrderServiceImpl(OrderRepository orderRepository, RabbitMQOrderMessageProducer orderMessageProducer)
     {
         this.orderRepository = orderRepository;
+        this.orderMessageProducer = orderMessageProducer;
     }
 
     @Override
@@ -23,6 +25,7 @@ public class OrderServiceImpl implements OrderService
     {
         Order order = mapOrderRequestDTOToOrder(orderRequestDTO);
         Order orderEntity = orderRepository.save(order);
+        orderMessageProducer.sendOrder(orderRequestDTO);
         return mapOrderToOrderResponseDTO(orderEntity);
     }
 
