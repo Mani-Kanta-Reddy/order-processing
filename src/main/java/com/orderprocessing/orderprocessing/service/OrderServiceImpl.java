@@ -41,13 +41,16 @@ public class OrderServiceImpl implements OrderService
     @Override
     public OrderResponseDTO saveOrder(OrderRequestDTO orderRequestDTO)
     {
+        log.info("Saving order: {}", orderRequestDTO);
         try
         {
             Order order = mapOrderRequestDTOToOrder(orderRequestDTO);
             Order orderEntity = orderRepository.save(order);
+            log.debug("Order entry created for order: {}", orderEntity.getOrderId());
             String payload = objectMapper.writeValueAsString(orderRequestDTO);
             OrderOutbox outbox = new OrderOutbox(payload, OrderEventStatus.PENDING);
             outboxRepository.save(outbox);
+            log.info("Outbox entry created for order: {}", orderEntity.getOrderId());
             return mapOrderToOrderResponseDTO(orderEntity);
         }
         catch (Exception e)
