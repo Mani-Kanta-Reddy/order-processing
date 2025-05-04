@@ -12,7 +12,7 @@ This application exposes three REST endpoints to:
 - **Retrieve paged orders**
 
 Upon placing an order, it is:
-- Persisted to the database
+- Persisted to the database (uses h2 embedded db for simplification)
 - Published as an event to a RabbitMQ queue (`order-queue`) for downstream processing/analytics (handled outside this project scope)
 
 Key features:
@@ -21,6 +21,10 @@ Key features:
 - **Tempo** for distributed tracing
 - **Loki** for centralized logging
 
+## 📦 Prerequisites
+
+- **Docker Desktop** installed and running
+  > No need to install Java, RabbitMQ, Prometheus, Grafana, or any DB manually — everything is containerized.
 ---
 
 ## 🏗️ How to Build
@@ -39,6 +43,11 @@ Key features:
 3. Launch the entire system using Docker:
    ```bash
    docker-compose up --build
+   ```
+
+4. Gracefully stop the entire system using Docker:
+   ```bash
+   docker-compose down --v
    ```
 
 ---
