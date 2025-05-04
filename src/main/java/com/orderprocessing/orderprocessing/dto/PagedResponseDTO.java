@@ -10,6 +10,10 @@ public class PagedResponseDTO<T> {
     private int totalPages;
     private boolean isLast;
 
+    public PagedResponseDTO()
+    {
+    }
+
     public PagedResponseDTO(List<T> data, int currentPage, int pageSize, long totalElements, int totalPages, boolean isLast) {
         this.data = data;
         this.currentPage = currentPage;
