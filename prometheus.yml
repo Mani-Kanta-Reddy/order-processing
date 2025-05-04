@@ -5,4 +5,4 @@ scrape_configs:
   - job_name: 'order-processor-metrics-scrape'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['order-processor:8081']
+      - targets: [ 'order-processor:8081' ]

@@ -5,21 +5,26 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-class OrderRepositoryTest {
+class OrderRepositoryTest
+{
 
     @Autowired
     private OrderRepository orderRepository;
 
     @Test
     @DisplayName("Should save and fetch order successfully")
-    void saveAndFetchOrder() {
+    void saveAndFetchOrder()
+    {
         // Given
         Order order = new Order("Laptop", 2);
         orderRepository.save(order);
@@ -35,7 +40,8 @@ class OrderRepositoryTest {
 
     @Test
     @DisplayName("Should return paged orders")
-    void fetchPagedOrders() {
+    void fetchPagedOrders()
+    {
         // Given
         orderRepository.save(new Order("Book", 1));
         orderRepository.save(new Order("Pen", 5));

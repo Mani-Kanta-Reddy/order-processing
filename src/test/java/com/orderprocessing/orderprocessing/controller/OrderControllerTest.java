@@ -13,16 +13,18 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(OrderController.class)
-class OrderControllerTest {
+class OrderControllerTest
+{
 
     @Autowired
     private MockMvc mockMvc;
@@ -34,7 +36,8 @@ class OrderControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void testPlaceOrder() throws Exception {
+    void testPlaceOrder() throws Exception
+    {
         OrderRequestDTO request = new OrderRequestDTO("Samsung-S23", 3);
         OrderResponseDTO response = new OrderResponseDTO(1L, "Samsung-S23", 3);
 
@@ -50,7 +53,8 @@ class OrderControllerTest {
     }
 
     @Test
-    void testGetOrders() throws Exception {
+    void testGetOrders() throws Exception
+    {
         OrderResponseDTO order = new OrderResponseDTO(1L, "Samsung-S23", 3);
         Mockito.when(orderService.getOrders()).thenReturn(List.of(order));
 
@@ -62,7 +66,8 @@ class OrderControllerTest {
     }
 
     @Test
-    void testGetPagedOrders() throws Exception {
+    void testGetPagedOrders() throws Exception
+    {
         OrderResponseDTO order = new OrderResponseDTO(1L, "Samsung-S23", 3);
         PagedResponseDTO<OrderResponseDTO> pagedResponse = new PagedResponseDTO<>(
             List.of(order), 0, 1, 1, 1, true

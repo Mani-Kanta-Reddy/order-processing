@@ -2,7 +2,8 @@ package com.orderprocessing.orderprocessing.dto;
 
 import java.util.List;
 
-public class PagedResponseDTO<T> {
+public class PagedResponseDTO<T>
+{
     private List<T> data;
     private int currentPage;
     private int pageSize;
@@ -14,7 +15,8 @@ public class PagedResponseDTO<T> {
     {
     }
 
-    public PagedResponseDTO(List<T> data, int currentPage, int pageSize, long totalElements, int totalPages, boolean isLast) {
+    public PagedResponseDTO(List<T> data, int currentPage, int pageSize, long totalElements, int totalPages, boolean isLast)
+    {
         this.data = data;
         this.currentPage = currentPage;
         this.pageSize = pageSize;

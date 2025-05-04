@@ -29,7 +29,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class OrderServiceImplTest {
+class OrderServiceImplTest
+{
 
     @Mock
     private OrderRepository orderRepository;
@@ -47,7 +48,8 @@ class OrderServiceImplTest {
     private OrderServiceImpl orderService;
 
     @Test
-    void saveOrder_success() throws Exception {
+    void saveOrder_success() throws Exception
+    {
         OrderRequestDTO request = new OrderRequestDTO("Samsung-S23", 3);
         Order savedOrder = new Order("Samsung-S23", 3);
         savedOrder.setOrderId(1L);
@@ -67,7 +69,8 @@ class OrderServiceImplTest {
     }
 
     @Test
-    void saveOrder_throwsOrderPersistenceException_onJsonProcessingError() throws Exception {
+    void saveOrder_throwsOrderPersistenceException_onJsonProcessingError() throws Exception
+    {
         OrderRequestDTO request = new OrderRequestDTO("Samsung-S23", 3);
 
         when(orderRepository.save(any(Order.class))).thenThrow(new RuntimeException("DB error"));
@@ -81,7 +84,8 @@ class OrderServiceImplTest {
     }
 
     @Test
-    void getOrders_returnsListOfOrders() {
+    void getOrders_returnsListOfOrders()
+    {
         Order order = new Order("iPhone 15", 2);
         order.setOrderId(101L);
 
@@ -94,7 +98,8 @@ class OrderServiceImplTest {
     }
 
     @Test
-    void getOrders_returnsEmptyList() {
+    void getOrders_returnsEmptyList()
+    {
         when(orderRepository.findAll()).thenReturn(List.of());
 
         List<OrderResponseDTO> orders = orderService.getOrders();
@@ -103,7 +108,8 @@ class OrderServiceImplTest {
     }
 
     @Test
-    void getOrdersPaged_returnsPaginatedResponse() {
+    void getOrdersPaged_returnsPaginatedResponse()
+    {
         Order order = new Order("MacBook Air", 1);
         order.setOrderId(999L);
 

@@ -12,14 +12,16 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-class OrderOutboxRepositoryTest {
+class OrderOutboxRepositoryTest
+{
 
     @Autowired
     private OrderOutboxRepository outboxRepository;
 
     @Test
     @DisplayName("Should save and retrieve OrderOutbox entity")
-    void saveAndRetrieveOutbox() {
+    void saveAndRetrieveOutbox()
+    {
         // Given
         OrderOutbox outbox = new OrderOutbox("sample-payload", OrderEventStatus.PENDING);
         outboxRepository.save(outbox);
@@ -35,7 +37,8 @@ class OrderOutboxRepositoryTest {
 
     @Test
     @DisplayName("Should fetch outboxes by status")
-    void findByStatus() {
+    void findByStatus()
+    {
         // Given
         outboxRepository.save(new OrderOutbox("msg-1", OrderEventStatus.PENDING));
         outboxRepository.save(new OrderOutbox("msg-2", OrderEventStatus.SENT));

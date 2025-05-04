@@ -41,14 +41,17 @@ public class OrderServiceImpl implements OrderService
     @Override
     public OrderResponseDTO saveOrder(OrderRequestDTO orderRequestDTO)
     {
-        try {
+        try
+        {
             Order order = mapOrderRequestDTOToOrder(orderRequestDTO);
             Order orderEntity = orderRepository.save(order);
             String payload = objectMapper.writeValueAsString(orderRequestDTO);
             OrderOutbox outbox = new OrderOutbox(payload, OrderEventStatus.PENDING);
             outboxRepository.save(outbox);
             return mapOrderToOrderResponseDTO(orderEntity);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             log.error("Unexpected error during order persistence: {}", e.getMessage(), e);
             throw new OrderPersistenceException("Unexpected error while saving order", e);
         }
@@ -83,11 +86,13 @@ public class OrderServiceImpl implements OrderService
         );
     }
 
-    private Order mapOrderRequestDTOToOrder(OrderRequestDTO orderRequestDTO) {
+    private Order mapOrderRequestDTOToOrder(OrderRequestDTO orderRequestDTO)
+    {
         return new Order(orderRequestDTO.getItem(), orderRequestDTO.getQuantity());
     }
 
-    private OrderResponseDTO mapOrderToOrderResponseDTO(Order order) {
+    private OrderResponseDTO mapOrderToOrderResponseDTO(Order order)
+    {
         return new OrderResponseDTO(order.getOrderId(), order.getItem(), order.getQuantity());
     }
 }

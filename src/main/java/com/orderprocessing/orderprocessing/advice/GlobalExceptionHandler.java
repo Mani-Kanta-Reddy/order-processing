@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler
 {
     @ExceptionHandler(OrderPersistenceException.class)
-    public ResponseEntity<String> handleOrderPersistenceException(OrderPersistenceException ex) {
+    public ResponseEntity<String> handleOrderPersistenceException(OrderPersistenceException ex)
+    {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body("Error saving order: " + ex.getMessage());
     }

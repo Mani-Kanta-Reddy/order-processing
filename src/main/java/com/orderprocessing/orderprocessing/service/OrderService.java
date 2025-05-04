@@ -11,7 +11,8 @@ import java.util.List;
 public interface OrderService
 {
     OrderResponseDTO saveOrder(OrderRequestDTO orderRequestDTO);
-    List<OrderResponseDTO> getOrders();
-    PagedResponseDTO<OrderResponseDTO> getOrders(int page, int size);
 
+    List<OrderResponseDTO> getOrders();
+
+    PagedResponseDTO<OrderResponseDTO> getOrders(int page, int size);
 }

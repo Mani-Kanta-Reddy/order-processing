@@ -20,9 +20,12 @@ public class OrderOutbox
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public OrderOutbox() {}
+    public OrderOutbox()
+    {
+    }
 
-    public OrderOutbox(String payload, OrderEventStatus status) {
+    public OrderOutbox(String payload, OrderEventStatus status)
+    {
         this.payload = payload;
         this.status = status;
     }

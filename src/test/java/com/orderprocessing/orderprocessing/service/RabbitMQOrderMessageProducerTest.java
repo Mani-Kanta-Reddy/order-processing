@@ -12,7 +12,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class RabbitMQOrderMessageProducerTest {
+class RabbitMQOrderMessageProducerTest
+{
 
     @Mock
     private RabbitTemplate rabbitTemplate;
@@ -24,7 +25,8 @@ class RabbitMQOrderMessageProducerTest {
     private RabbitMQOrderMessageProducer producer;
 
     @Test
-    void sendOrder_shouldSendMessageToCorrectQueue() {
+    void sendOrder_shouldSendMessageToCorrectQueue()
+    {
         // Given
         String payload = "{\"item\":\"iPhone 15\",\"quantity\":2}";
         String queueName = "order-queue";

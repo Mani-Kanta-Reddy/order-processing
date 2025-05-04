@@ -7,15 +7,18 @@ A Java Spring Boot-based microservice that handles order placement and retrieval
 ## 🚀 What This Project Does
 
 This application exposes three REST endpoints to:
+
 - **Place an order**
 - **Retrieve all orders**
 - **Retrieve paged orders**
 
 Upon placing an order, it is:
+
 - Persisted to the database (uses h2 embedded db for simplification)
 - Published as an event to a RabbitMQ queue (`order-queue`) for downstream processing/analytics (handled outside this project scope)
 
 Key features:
+
 - **Exception handling & retry strategies**
 - **Prometheus + Grafana** for metrics
 - **Tempo** for distributed tracing
@@ -25,6 +28,7 @@ Key features:
 
 - **Docker Desktop** installed and running
   > No need to install Java, RabbitMQ, Prometheus, Grafana, or any DB manually — everything is containerized.
+
 ---
 
 ## 🏗️ How to Build
@@ -47,7 +51,7 @@ Key features:
 
 4. Gracefully stop the entire system using Docker:
    ```bash
-   docker-compose down --v
+   docker-compose down -v
    ```
 
 ---
@@ -55,7 +59,9 @@ Key features:
 ## 📡 How to Use
 
 ### ➕ Place an Order
+
 `POST /api/v1/orders`
+
 ```http
 POST http://localhost:8080/api/v1/orders
 Content-Type: application/json
@@ -67,6 +73,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "orderId": 1,
@@ -78,12 +85,15 @@ Content-Type: application/json
 ---
 
 ### 📋 Get All Orders
+
 `GET /api/v1/orders`
+
 ```http
 GET http://localhost:8080/api/v1/orders
 ```
 
 **Response:**
+
 ```json
 [
   {
@@ -97,12 +107,15 @@ GET http://localhost:8080/api/v1/orders
 ---
 
 ### 📄 Get Paged Orders
+
 `GET /api/v1/orders/paged?page=0&size=1`
+
 ```http
 GET http://localhost:8080/api/v1/orders/paged?page=0&size=1
 ```
 
 **Response:**
+
 ```json
 {
   "data": [
@@ -141,20 +154,25 @@ GET http://localhost:8080/api/v1/orders/paged?page=0&size=1
 ## 📸 Sample Dashboards
 
 ### 🔍 Tempo Tracing View
+
 ![Tempo Traces](screenshots/distributed-tracing-tempo.png)
 
 ### 📈 Prometheus Metrics View
+
 ![Prometheus Metrics](screenshots/prometheus-basic+jvm-stats.png)
 ![Prometheus Metrics](screenshots/prometheus-jvm-gc-stats.png)
 ![Prometheus Metrics](screenshots/prometheus-db-connectionpool+http-stats.png)
 
 ### 📊 Grafana Dashboard
+
 ![Grafana Dashboard](screenshots/grafana-dashboards.png)
 
 ### 📜 Loki Logs View
+
 ![Loki Logs](screenshots/centralised-log-store-loki.png)
 
 ### 🐇 RabbitMQ Queue
+
 ![RabbitMQ Queue](screenshots/rabbitmq-queue-stats.png)
 
 ---

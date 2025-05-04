@@ -3,19 +3,22 @@ package com.orderprocessing.orderprocessing.service;
 import com.orderprocessing.orderprocessing.entity.OrderEventStatus;
 import com.orderprocessing.orderprocessing.entity.OrderOutbox;
 import com.orderprocessing.orderprocessing.repository.OrderOutboxRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class OutboxMessageSchedulerTest {
+class OutboxMessageSchedulerTest
+{
 
     @Mock
     private OrderOutboxRepository outboxRepository;
@@ -28,7 +31,8 @@ class OutboxMessageSchedulerTest {
 
 
     @Test
-    void publishPendingMessages_shouldSendAndMarkAsSent() {
+    void publishPendingMessages_shouldSendAndMarkAsSent()
+    {
         // Given
         OrderOutbox outbox1 = new OrderOutbox("payload-1", OrderEventStatus.PENDING);
         outbox1.setId(1L);
@@ -44,7 +48,8 @@ class OutboxMessageSchedulerTest {
     }
 
     @Test
-    void publishPendingMessages_shouldHandleFailuresGracefully() {
+    void publishPendingMessages_shouldHandleFailuresGracefully()
+    {
         // Given
         OrderOutbox outbox2 = new OrderOutbox("payload-2", OrderEventStatus.PENDING);
         outbox2.setId(2L);
