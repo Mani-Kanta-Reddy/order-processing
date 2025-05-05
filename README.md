@@ -58,6 +58,13 @@ Key features:
 
 ## 📡 How to Use
 
+## 🧾 API Documentation
+
+This project integrates **OpenAPI (Swagger UI)** for easy exploration and testing of the API contract.
+
+- After running the application, navigate to: http://localhost:8080/swagger-ui.html
+- Or, you can also manually test out using http clients like Postman
+
 ### ➕ Place an Order
 
 `POST /api/v1/orders`
@@ -151,7 +158,17 @@ GET http://localhost:8080/api/v1/orders/paged?page=0&size=1
 
 ---
 
-## 📸 Sample Dashboards
+## 📸 Sample Screenshots
+
+### 📸 Swagger UI
+
+Below is a sample screenshot of the Swagger UI integrated with this project:
+
+![Swagger UI](screenshots/swagger-get-orders.png)
+![Swagger UI](screenshots/swagger-post-order.png)
+![Swagger UI](screenshots/swagger-get-orders-paged.png)
+
+> Swagger UI available at: `http://localhost:8080/swagger-ui.html`
 
 ### 🔍 Tempo Tracing View
 
